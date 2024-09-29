@@ -4,13 +4,6 @@
   padding: 0;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  padding: 10px;
-  text-align: center;
-}
-
 header {
   background: #4CAF50;
   color: white;
@@ -55,18 +48,25 @@ footer {
   color: white;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 600px) {
-  nav ul {
-      flex-direction: column;
-      align-items: center;
+/* Default styles for larger screens */
+body {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+  body {
+      width: 100vw; /* Full viewport width */
+      margin: 0;    /* Remove any margin */
+      padding: 0;   /* Remove any padding */
   }
 
-  nav ul li {
-      margin: 10px 0;
-  }
-
-  main {
-      padding: 0 10px;
+  /* Other styles specific to mobile */
+  .container {
+      width: 100%;  /* Ensure container is full width */
+      padding: 10px; /* Optional padding */
   }
 }

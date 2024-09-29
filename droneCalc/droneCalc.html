@@ -1,7 +1,119 @@
 <body>
+  <h1 class="text-5xl">DatGuyEddy's Drone Sunset Calculator</h1>
+  <br />
+  <div>
+    <form class="w-5/6 mx-auto">
+      <label
+        for="sun-input"
+        class="block mb-5 text-6xl font-xl text-gray-900 dark:text-white"
+        >Select sun time:</label
+      >
+      <div class="flex">
+        <input
+          type="time"
+          id="sun-input"
+          class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-6xl border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          min="00:00"
+          max="24:00"
+          value="19:00"
+          required
+        />
+      </div>
+    </form>
+    <br />
+    <form class="w-5/6 mx-auto">
+      <label
+        for="number-input"
+        class="block mb-2 text-6xl font-medium text-gray-900 dark:text-white"
+        >Battery Flight Minutes:</label
+      >
+      <input
+        type="number"
+        id="flight-input"
+        aria-describedby="helper-text-explanation"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-6xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 
-<h1>DatGuyEddy's Drone Sunset Calculator</h1>
+      />
+    </form>
+    <br />
+    <form class="w-5/6 mx-auto">
+      <label
+        for="margin-input"
+        class="block mb-2 text-6xl font-medium text-gray-900 dark:text-white"
+        >Margin Minutes:</label
+      >
+      <input
+        type="number"
+        id="margin-input"
+        aria-describedby="helper-text-explanation"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-6xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 
+      />
+    </form>
+  </div>
+  <br />
+  <div class="w-2/3 mx-auto">
+    <button
+      id="submit"
+      onclick="onSubmit()"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-6xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      Submit
+    </button>
+  </div>
+  <br />
+  <div class="w-5/6 mx-auto">
+    <label
+      for="result"
+      class="block mb-2 text-6xl font-medium text-gray-900 dark:text-white"
+      >Result:</label
+    >
+    <label
+      id="result"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-6xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    ></label>
+  </div>
 </body>
 
-<link rel="stylesheet" href="/style.css">
+<script>
+  function onSubmit() {
+    const resultLabel = document.getElementById("result");
+    const sunTime = document.getElementById("sun-input");
+    const flightTime = document.getElementById("flight-input");
+    const marginTime = document.getElementById("margin-input");
+    if (resultLabel && sunTime && flightTime && marginTime) {
+      console.log(sunTime.value);
+      let hours = sunTime.value.split(":")[0];
+      console.log(hours);
+      let minutes = sunTime.value.split(":")[1];
+      console.log(minutes);
+      let sunTimeDate = new Date();
+      sunTimeDate.setHours(hours);
+      sunTimeDate.setMinutes(minutes);
+      let totalFlightTime = flightTime.value - marginTime.value;
+      console.log(flightTime.value);
+      console.log(marginTime.value);
+      sunTimeDate.setMinutes(sunTimeDate.getMinutes() - totalFlightTime);
+
+      result.textContent = formatTimeWithAMPM(sunTimeDate);
+    }
+  }
+
+  function formatTimeWithAMPM(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+
+    // Format minutes to always show two digits
+    minutes = String(minutes).padStart(2, '0');
+
+    return `${hours}:${minutes} ${ampm}`;
+}
+</script>
+
+<link rel="stylesheet" href="/style.css" />
+<script src="https://cdn.tailwindcss.com"></script>
