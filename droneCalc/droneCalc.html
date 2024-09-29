@@ -1,11 +1,12 @@
 <body>
+  <br />
   <h1 class="text-5xl">DatGuyEddy's Drone Sunset Calculator</h1>
   <br />
   <div>
     <form class="w-5/6 mx-auto">
       <label
         for="sun-input"
-        class="block mb-5 text-6xl font-xl text-gray-900 dark:text-white"
+        class="block mb-2 text-6xl font-medium text-gray-900"
         >Select sun time:</label
       >
       <div class="flex">
@@ -24,7 +25,7 @@
     <form class="w-5/6 mx-auto">
       <label
         for="number-input"
-        class="block mb-2 text-6xl font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-6xl font-medium text-gray-900"
         >Battery Flight Minutes:</label
       >
       <input
@@ -32,14 +33,13 @@
         id="flight-input"
         aria-describedby="helper-text-explanation"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-6xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
       />
     </form>
     <br />
     <form class="w-5/6 mx-auto">
       <label
         for="margin-input"
-        class="block mb-2 text-6xl font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-6xl font-medium text-gray-900"
         >Margin Minutes:</label
       >
       <input
@@ -47,7 +47,6 @@
         id="margin-input"
         aria-describedby="helper-text-explanation"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-6xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
       />
     </form>
   </div>
@@ -65,7 +64,7 @@
   <div class="w-5/6 mx-auto">
     <label
       for="result"
-      class="block mb-2 text-6xl font-medium text-gray-900 dark:text-white"
+      class="block mb-2 text-6xl font-medium text-gray-900"
       >Result:</label
     >
     <label
@@ -102,17 +101,17 @@
   function formatTimeWithAMPM(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const ampm = hours >= 12 ? "PM" : "AM";
 
     // Convert to 12-hour format
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
 
     // Format minutes to always show two digits
-    minutes = String(minutes).padStart(2, '0');
+    minutes = String(minutes).padStart(2, "0");
 
     return `${hours}:${minutes} ${ampm}`;
-}
+  }
 </script>
 
 <link rel="stylesheet" href="/style.css" />
